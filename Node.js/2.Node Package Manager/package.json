@@ -1,0 +1,19 @@
+{
+    "name": "2.node-package-manager",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "mongoose": "^6.2.4",
+      "underscore": "^1.13.2"
+    },
+    "devDependencies": {
+      "jshint": "^2.13.4"
+    }
+  }

@@ -1,0 +1,89 @@
+
+NPM :
+
+- Every Node application has a package.json file that includes metadata about the 
+    application. This includes the name of the application, its version, dependencies, 
+    etc. 
+
+- We use NPM to download and install 3rd-party packages from NPM registry: 
+
+- All the installed packages and their dependencies are stored under 
+    node_modules folders. This folder should be excluded from the source control.
+    Hence we put this folder in .gitignore file. Now in oder to install these packages
+    in local repository we use : npm i
+    It automatically installs all the packages as mentioned or used in package.json file.
+
+- Node packages follow Semantic Versioning: major.minor.patch 
+    1.MAJOR version when you make incompatible API changes,
+    2.MINOR version when you add functionality in a backwards compatible manner, and
+    3.PATCH version when you make backwards compatible bug fixes.
+
+    IN package.json :
+    * Packages are entered like : ^4.2.5 , here ^ (carot) represents that if we install 
+        this package again we are fine with its newer minor.patch versions as long as major is 4.
+        Can also be written as 4.x
+
+    * Packages are also entered like : ~4.2.5 , here ~ (tilde) represents that if we install
+        this package again we are fine with its newer patch versions as long as major.minor is same
+        i.e. 4.2
+        Can also be written as 4.2.x
+
+    reference for more info : https://semver.org/
+
+
+- Useful NPM commands are: 
+
+    // Install a package
+        npm i <packageName>
+
+    // Install a specific version of a package 
+        npm i <packageName>@<version>
+
+    // Install a package as a development dependency
+        npm i <packageName> —save-dev
+
+    // Uninstall a package
+        npm un <packageName>
+
+    // List installed packages 
+        npm list --depth=0
+
+    // view registry info of packages
+        npm view <packageName>
+        npm view <packageName> dependencies
+        npm view <packageName> versions
+
+    // View outdated packages
+        npm outdated
+
+    // Update packages (restricted to ^ and ~)
+        npm update 
+    
+    // To update packages to there newest update breaking ^ and ~
+        npm i -g npm-check-updates
+
+    * NOTE : update only changes the version in package.json file. Have to
+                use (npm i) to install them as well.
+
+- To install/uninstall packages globally, use -g flag.
+
+- Publishing own lib/package:
+    * Create the __dir <lib_name>
+    * initialise package.json:
+        npm init --yes
+    * Create .js and relevent files,
+    * Create account / login on npm:
+        npm adduser
+        npm login
+    * Publish :
+        npm publish
+
+        NOTE : make sure lib_name is unique otherwise will get error
+
+- Update own lib/package 
+    * Depending on the change we have made current version is updated:
+        npm version major 
+        (or) npm version minor
+        (or) npm version patch
+    * Then publish:
+        npm publish
