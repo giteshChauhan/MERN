@@ -33,7 +33,7 @@ function getRepositories(user){
 }
 
 function getCommits(repos){
-    getCommits(repo, displayCommits);
+    getCommits(repos, displayCommits);
 }
 
 function displayCommits(commits){
@@ -52,4 +52,11 @@ function getRepositories(username,callback){
         console.log('Calling gitHub API...');
         callback(['repo1','repo2','repo3']);
     }, 2000);
+}
+
+function getCommits(repo, callback){
+    setTimeout(() => {
+        console.log('Calling GitHub API....');
+        callback(['commit']);
+    });
 }
