@@ -2,6 +2,7 @@ const express = require('express');
 const Joi = require('joi');
 const mongoose = require('mongoose');
 const genres = require('./routes/genres');
+const customers = require('./routes/customers');
 const app = express();
 
 mongoose.connect('mongodb://localhost/project_vidly')
@@ -11,6 +12,7 @@ mongoose.connect('mongodb://localhost/project_vidly')
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use('/api/genres',genres);
+app.use('/api/customers',customers);
 
 
 const port = process.env.port || 3000;
