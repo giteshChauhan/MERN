@@ -33,8 +33,8 @@ router.put('/:id',async (req,res) => {
     if(error) return res.status(400).send(error.details[0].message);
 
     const customer = await Customers.findByIdAndUpdate(req.params.id,{
-        new: true
-    });
+        name: req.body.name
+    },{new: true});
     if(!customer) return res.send('No such ID exists');
     res.send(customer);
 });
