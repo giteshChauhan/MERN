@@ -10,6 +10,7 @@ const rentals = require('./routes/rentals');
 const users = require('./routes/users');
 const login = require('./routes/login');
 const auth = require('./middleware/auth');
+const admin = require('./middleware/admin');
 const app = express();
 
 if(!config.get('jwtPrivateKey')){
@@ -23,10 +24,10 @@ mongoose.connect('mongodb://localhost/project_vidly')
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use('/api/genres',auth,genres);
+app.use('/api/genres',[auth, admin],genres);
 app.use('/api/customers',customers);
-app.use('/api/movies',auth,movies);
-app.use('/api/rentals',rentals);
+app.use('/api/movies',[auth, admin],movies);
+app.use('/api/rentals',auth,rentals);
 app.use('/api/users',users);
 app.use('/api/login',login);
 
