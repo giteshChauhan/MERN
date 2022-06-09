@@ -8,7 +8,8 @@ const customers = require('./routes/customers');
 const movies = require('./routes/movies');
 const rentals = require('./routes/rentals');
 const users = require('./routes/users');
-const auth = require('./routes/auth');
+const login = require('./routes/login');
+const auth = require('./middleware/auth');
 const app = express();
 
 if(!config.get('jwtPrivateKey')){
@@ -22,12 +23,12 @@ mongoose.connect('mongodb://localhost/project_vidly')
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use('/api/genres',genres);
+app.use('/api/genres',auth,genres);
 app.use('/api/customers',customers);
-app.use('/api/movies',movies);
+app.use('/api/movies',auth,movies);
 app.use('/api/rentals',rentals);
 app.use('/api/users',users);
-app.use('/api/auth',auth);
+app.use('/api/login',login);
 
 
 const port = process.env.port || 3000;
