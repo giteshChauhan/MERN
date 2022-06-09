@@ -9,6 +9,8 @@ router.get('/',async (req,res) => {
 });
 
 router.get('/:id',async (req,res) =>{
+    if(! mongoose.isValidObjectId(req.params.id))
+        return res.status(400).send('Invalid Id');
     const genre = await Genre.findById(mongoose.Types.ObjectId(req.params.id));
     if(!genre) return res.send('No such id exists');
     res.send(genre);
@@ -24,6 +26,8 @@ router.post('/',async (req,res) =>{
 });
 
 router.put('/:id',async (req,res) =>{
+    if(! mongoose.isValidObjectId(req.params.id))
+        return res.status(400).send('Invalid Id');
     const {error} = validate(req.body);
     if(error) return res.status(404).send(error.details[0].message);
 
@@ -36,6 +40,8 @@ router.put('/:id',async (req,res) =>{
 });
 
 router.delete('/:id',async (req,res) =>{
+    if(! mongoose.isValidObjectId(req.params.id))
+        return res.status(400).send('Invalid Id');
     const genre = await Genre.findByIdAndRemove(mongoose.Types.ObjectId(req.params.id));
     if(!genre) return res.send('No such id exists');
     res.send(genre);

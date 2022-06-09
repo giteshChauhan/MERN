@@ -6,6 +6,8 @@ const router = express.Router();
 
 
 router.get('/:id',async (req,res) => {
+    if(! mongoose.isValidObjectId(req.params.id))
+        return res.status(400).send('Invalid Id');
     const movie = await Movies.findById(req.params.id).select('title numberInStock dailyRentalRate genre.name -_id');
     if(!movie) return res.send('No such ID exists');
     res.send(movie);
@@ -32,6 +34,8 @@ router.post('/',async (req,res) =>{
 });
 
 router.put('/:id',async (req,res) => {
+    if(! mongoose.isValidObjectId(req.params.id))
+        return res.status(400).send('Invalid Id');
     const {error} = validate(req.body);
     if(error) res.status(400).send(error.details[0].message);
 
@@ -47,6 +51,8 @@ router.put('/:id',async (req,res) => {
 });
 
 router.delete(':id',async (req,res) => {
+    if(! mongoose.isValidObjectId(req.params.id))
+        return res.status(400).send('Invalid Id');
     const movie = await Movies.findByIdAndRemove(req.params.id);
     if(!movie) return res.status(400).send('Invalid movie ID');
     res.send(movie);

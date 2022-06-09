@@ -9,6 +9,8 @@ router.get('/',async (req,res) => {
 });
 
 router.get('/:id',async (req,res) => {
+    if(! mongoose.isValidObjectId(req.params.id))
+        return res.status(400).send('Invalid Id');
     const customer = await Customers.findById(req.params.id);
     if(!customer) return res.send('No such ID exists');
     res.send(customer);
@@ -28,6 +30,8 @@ router.post('/',async (req,res) => {
 });
 
 router.put('/:id',async (req,res) => {
+    if(! mongoose.isValidObjectId(req.params.id))
+        return res.status(400).send('Invalid Id');
     const {error} = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
@@ -39,6 +43,8 @@ router.put('/:id',async (req,res) => {
 });
 
 router.delete('/:id',async (req,res) => {
+    if(! mongoose.isValidObjectId(req.params.id))
+        return res.status(400).send('Invalid Id');
     const customer = await Customers.findByIdAndRemove(req.params.id);
     if(!customer) return res.send('No such ID exists');
     res.send(customer);

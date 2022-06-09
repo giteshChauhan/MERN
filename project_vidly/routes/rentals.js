@@ -6,6 +6,8 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/:id',async (req,res) => {
+    if(! mongoose.isValidObjectId(req.params.id))
+        return res.status(400).send('Invalid Id');
     const rentals = await Rentals.find().sort('-dateOut');
     res.send(rentals);
 });
