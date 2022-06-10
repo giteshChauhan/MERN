@@ -16,7 +16,18 @@ const admin = require('./middleware/admin');
 const error = require('./middleware/error');
 const app = express();
 
+winston.add(new winston.transports.File({
+    filename: 'log/exceptions.log',
+    handleExceptions: true
+}));
+
+winston.add(new winston.transports.File({
+    filename: 'log/rejections.log',
+    handleRejections: true
+}));
+
 winston.add(new winston.transports.File({ filename: 'log/logfile.log' }));
+
 
 if(!config.get('jwtPrivateKey')){
     console.error('FATAL ERROR: jwtPrivateKey is not defined');
