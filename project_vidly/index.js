@@ -1,3 +1,4 @@
+require('express-async-errors');
 const config = require('config');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -11,6 +12,7 @@ const users = require('./routes/users');
 const login = require('./routes/login');
 const auth = require('./middleware/auth');
 const admin = require('./middleware/admin');
+const error = require('./middleware/error');
 const app = express();
 
 if(!config.get('jwtPrivateKey')){
@@ -30,6 +32,7 @@ app.use('/api/movies',[auth, admin],movies);
 app.use('/api/rentals',auth,rentals);
 app.use('/api/users',users);
 app.use('/api/login',login);
+app.use(error);
 
 
 const port = process.env.port || 3000;
