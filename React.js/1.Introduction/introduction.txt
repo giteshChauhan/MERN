@@ -1,0 +1,15 @@
+
+-> What is react?
+    : React is a javaScript library for building fast and interactive user interfaces.
+      At the heart of every react application are components.
+    
+-> what are components?
+    : components are the piece of UI. Every react app have alteast one component which 
+        we refer to as root component and  other child components. These components are
+        build separately then put together to form the complex UIs. This also makes
+        components reusable.
+
+-> Implementation of components:
+    Components are implemented using javaScript class which have some state and a render
+    method. The output of the render method is simple react element which is a plain js
+    object that maps to a DOM element.
