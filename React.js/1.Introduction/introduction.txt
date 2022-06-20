@@ -18,4 +18,4 @@
     It installs all the package necessary for the app with ZERO-CONFIG-SETUP.
     However we can define custom config by {npm run eject}. Running this command
     intall three major things: 1) Development Server 2) Webpack: for bundling our files
-    3) Babel: for compiling our js code.
+    3) Babel: for compiling our js code i.e. jsx into plain js code.
