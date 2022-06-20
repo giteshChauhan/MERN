@@ -13,3 +13,9 @@
     Components are implemented using javaScript class which have some state and a render
     method. The output of the render method is simple react element which is a plain js
     object that maps to a DOM element.
+
+-> create-react-app <foldername> :
+    It installs all the package necessary for the app with ZERO-CONFIG-SETUP.
+    However we can define custom config by {npm run eject}. Running this command
+    intall three major things: 1) Development Server 2) Webpack: for bundling our files
+    3) Babel: for compiling our js code.
